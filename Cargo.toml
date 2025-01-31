@@ -1,5 +1,5 @@
 [package]
-name = "envoy-ext-authz"
+name = "media-cache-envoy-ext-authz"
 version = "0.1.0"
 edition = "2021"
 
