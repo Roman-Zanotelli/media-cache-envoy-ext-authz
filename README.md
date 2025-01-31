@@ -11,3 +11,4 @@ External envoy authentication service using grpc (tonic) and redis to keep track
 + envoy fowards the get request to minio for it to be handled there once an OK response is given, certain responses (highly used assets) could be cached driectly at envoy level increasing speed but also storage/memory consumption
 + inside redis duration for the resource ready state can be tracked for increased resposniveness
 + ideally the end users client will properly handle back off durations for loading resources, even if not rate limiting at an envoy level and an auth service internal response cache should prevent abuse
++ also the LTS service should communicate directly with the cache (or atleast redis) to ensure state before loading from AWS
