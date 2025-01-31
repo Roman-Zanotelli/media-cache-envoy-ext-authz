@@ -1,0 +1,16 @@
+syntax = "proto3";
+
+package medialts;
+
+import "google/protobuf/duration.proto";
+
+service MediaLongTermStorageServer{
+    rpc RequestResource(LTSRequest) returns (LTSResponse);
+}
+message LTSRequest{
+    string resource = 1;
+}
+message LTSResponse{
+    bool exists = 1; //if it exists
+    google.protobuf.Duration wait_until = 2; //wait duration before checking again
+}
