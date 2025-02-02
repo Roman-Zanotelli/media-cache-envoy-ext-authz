@@ -4,6 +4,8 @@ External envoy authentication service using grpc (tonic) and redis to keep track
 ![media-cache-envoy-ext-authz excalidraw](https://github.com/user-attachments/assets/7ba5fde7-e64a-477f-855a-5b62ab300a64)
 #### redis state system architecture
 + https://github.com/Roman-Zanotelli/media-cache-redis-state-sync
+#### long term storage state system architecture
++ TODO!
 # additional notes
 + the goal of the auth service is to tell envoy whether the get is "OK" (200) and ready to be retrieved from the cache
 + if it exists but is loading reject the request and modify the envoy response to indicate to the end user the media is currently loading/processing (Can be cached with proper considerations)
