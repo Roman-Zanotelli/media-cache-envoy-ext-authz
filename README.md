@@ -6,7 +6,7 @@ External envoy authentication service using grpc (tonic) and redis to keep track
 + the goal of the auth service is to tell envoy whether the get is "OK" (200) and ready to be retrieved from the cache
 + if it exists but is loading reject the request and modify the envoy response to indicate to the end user the media is currently loading/processing (Can be cached with proper considerations)
 + if the resource does not exist reject the request and modify the envoy response to indicate to the end user the media does not exist (Cache this response)
-+ the microservice should keep a small internal cache of recently processed requests to reduce server load, preventing redundant calls to redis or additional backend services
++ this microservice could keep a small internal cache of recently processed requests to reduce server load, preventing redundant calls to redis or additional backend services (optional, and will consume more memory per instance but would reduce any additional external system strain, the overall decision can be made later with proper testing and has little to do with core functionality)
 + this program only interacts with envoy through ext_authz, redis for cache state, and a LTS service that responds with the status/availability of a resource in storage. it doesnt inteact with the cache itself
 + envoy fowards the get request to minio for it to be handled there once an OK response is given, certain responses (highly used assets) could be cached driectly at envoy level increasing speed but also storage/memory consumption
 + inside redis duration for the resource ready state can be tracked for increased resposniveness
