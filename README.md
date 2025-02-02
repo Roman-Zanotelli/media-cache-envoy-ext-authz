@@ -13,5 +13,5 @@ External envoy authentication service using grpc (tonic) and redis to keep track
 + ideally the end users client will properly handle back off durations for loading resources, even if not rate limiting at an envoy level and an auth service internal response cache should prevent abuse
 + also the LTS service should communicate directly with the cache (or atleast redis) to ensure state before loading from AWS
 + the main reason the cache does not directly relay upstream to the AWS s3 storage is to prevent/minimize/optimize api calls to S3 (each api call costs money, allowing cache misses to be relayed unchecked to aws s3 can cause unecessary cost overtime versus using a private DB as a registery of the aws s3 storage state, with this private registry only valid calls are made resulting in reduced aws costs)
-### cache redis state sync system architecture
+# redis state sync system architecture
 https://github.com/Roman-Zanotelli/media-cache-redis-state-sync
