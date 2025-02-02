@@ -2,6 +2,8 @@
 External envoy authentication service using grpc (tonic) and redis to keep track of requests and deny/accept/preload requests. Missing but valid resources are fetched from LTS service with a wait time until next request
 # overview
 ![media-cache-envoy-ext-authz excalidraw](https://github.com/user-attachments/assets/7ba5fde7-e64a-477f-855a-5b62ab300a64)
+#### redis state sync system architecture
+https://github.com/Roman-Zanotelli/media-cache-redis-state-sync
 # additional notes
 + the goal of the auth service is to tell envoy whether the get is "OK" (200) and ready to be retrieved from the cache
 + if it exists but is loading reject the request and modify the envoy response to indicate to the end user the media is currently loading/processing (Can be cached with proper considerations)
@@ -13,5 +15,3 @@ External envoy authentication service using grpc (tonic) and redis to keep track
 + ideally the end users client will properly handle back off durations for loading resources, even if not rate limiting at an envoy level and an auth service internal response cache should prevent abuse
 + also the LTS service should communicate directly with the cache (or atleast redis) to ensure state before loading from AWS
 + the main reason the cache does not directly relay upstream to the AWS s3 storage is to prevent/minimize/optimize api calls to S3 (each api call costs money, allowing cache misses to be relayed unchecked to aws s3 can cause unecessary cost overtime versus using a private DB as a registery of the aws s3 storage state, with this private registry only valid calls are made resulting in reduced aws costs)
-# redis state sync system architecture
-https://github.com/Roman-Zanotelli/media-cache-redis-state-sync
