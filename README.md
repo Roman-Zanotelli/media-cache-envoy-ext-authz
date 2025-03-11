@@ -1,3 +1,7 @@
+# deprecated
+System will use existing local storage (private dedicated machines) and burst to s3 under certain conditions, saving expenses while maintaining reliable scalability.
+An Envoy ext_auth filter will still be used to process the request similar to the initial step of this system, without additional services or fetching logic.
+
 # media-cache-envoy-ext-authz
 External envoy authentication service using grpc (tonic) and redis to keep track of requests and deny/accept/preload requests. Missing but valid resources are fetched from LTS service with a wait time until next reasonable request period
 # overview
