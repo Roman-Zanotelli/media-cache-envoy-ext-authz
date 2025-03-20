@@ -3,6 +3,9 @@ Demo/PoC of an external envoy authentication service using grpc (tonic) and redi
 This repo serves moreso as a test implementation/experimentaion of how this system may be implemented and the code is not planned for any production use
 # deprecated
 This sub-system architecture is no longer planned for use, The costs of AWS does not scale against the cost of dedicated machines running a private minio cluster based off my calculations. Attached is an Excel file for rough cost estimation compared to OVH dedicated hosting; While AWS S3 provides initial low upfront costs, storage and Data transfer costs long term are not sustainable compared to the costs of running a private cluster on OVH dedicated storage nodes. AWS may still be used for "Bursting" when storage requirements are exceeded but dedicated nodes are not available for scaling; In the future this will also likely be removed for scalable dedicated hosting using a providers API (I believe OVHCloud supports this already) for provisioning managed dedicated machines programatically, but this is a low priority issue/feature.
+# replacement
+this sub-system architecture will be replaced by envoy + external_auth_service (similar to this one) that does not prefetch data but instead solely OK/DENY the request based off interaction parameters and other elevant system state. Redis may possible still be used to store metadata withing the system, more tests need to be done to determine if using redis would even help system-load and response times compared to just directly checking Minio through the auth service, or not checking at all (besides external non minio related checks through the ext-auth-service) and just caching/rate-limiting responses of Minio requests through envoy.
+
 # overview
 ![media-cache-envoy-ext-authz excalidraw](https://github.com/user-attachments/assets/7ba5fde7-e64a-477f-855a-5b62ab300a64)
 #### redis state system architecture
