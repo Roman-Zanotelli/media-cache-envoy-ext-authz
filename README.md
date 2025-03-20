@@ -1,7 +1,8 @@
 # media-cache-envoy-ext-authz-demo
-Demo/PoC of an external envoy authentication service using grpc (tonic) and redis to keep track of requests and deny/accept/preload requests. Missing but valid resources are fetched from LTS service with a wait time until next reasonable request period
+Demo/PoC of an external envoy authentication service using grpc (tonic) and redis to keep track of requests and deny/accept/preload requests. Missing but valid resources are fetched from LTS service with a wait time until next reasonable request period.
+This repo serves moreso as a test implementation/experimentaion of how this system may be implemented and the code is not planned for any production use
 # deprecated
-This system is no longer planned for use, The costs of AWS does not scale against the cost of dedicated machines running a private minio cluster. 
+This sub-system architecture is no longer planned for use, The costs of AWS does not scale against the cost of dedicated machines running a private minio cluster based off my calculations. Attached is an Excel file for rough cost estimation compared to OVH dedicated hosting; While AWS S3 provides initial low upfront costs, storage and Data transfer costs long term are not sustainable compared to the costs of running a private cluster on OVH dedicated storage nodes. AWS may still be used for "Bursting" when storage requirements are exceeded but dedicated nodes are not available for scaling; In the future this will also likely be removed for scalable dedicated hosting using a providers API (I believe OVHCloud supports this already) for provisioning managed dedicated machines programatically, but this is a low priority issue/feature.
 # overview
 ![media-cache-envoy-ext-authz excalidraw](https://github.com/user-attachments/assets/7ba5fde7-e64a-477f-855a-5b62ab300a64)
 #### redis state system architecture
