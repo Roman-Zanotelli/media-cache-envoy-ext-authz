@@ -1,7 +1,11 @@
-# media-cache-envoy-ext-authz-demo
+# media-cache-envoy-ext-authz-demo (Archived/Deprecated)
 Demo/PoC of an external envoy authentication service using grpc (tonic) and redis to keep track of requests and deny/accept/preload requests. Missing but valid resources are fetched from LTS service with a wait time until next reasonable request period.
 This system will reduce and safeguard against AWS costs by caching Stored AWS data on local minio nodes with eviction policies for when full. It also lowers AWS API costs by keeping a record of AWS objects locally within the private cloud so calls to S3 invalid resources do not occur.
 This repo serves moreso as a test implementation/experimentaion of how this system may be implemented and the code is not planned for any production use.
+
+In production this system has been deprecated in favor for simpler/straightforward architecture focused on private S3-Compatible infastructure, decreasing projected operational costs by over 50% at scale for the trade off of slightly higher upfront costs.
+
+This system could be used for a hybrid deployment, but for simplicity Id also recommend just using Minio in relay mode to cache S3 as needed storing content for long periods of time. The Ext_authz filter can still do light verification on what exists inside public S3 provider but the system overall could be trimmed of bloat.
 # overview
 ![media-cache-envoy-ext-authz excalidraw](https://github.com/user-attachments/assets/7ba5fde7-e64a-477f-855a-5b62ab300a64)
 #### redis state system architecture
